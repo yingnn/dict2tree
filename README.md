@@ -16,3 +16,17 @@ root
         \__ c
             \__ d
 ```
+
+run script:
+
+```
+python dict2tree.py -h
+usage: dict2tree.py [-h] [-d] [-j JSON]
+
+display dict object as tree diagram
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d, --demo            show demo
+  -j JSON, --json JSON  json file or json string
+```

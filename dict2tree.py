@@ -1,10 +1,19 @@
 from __future__ import print_function
 import json
 import os
+import sys
+import argparse
 
 
 k = 0
 l = set()
+
+
+def get_args():
+    ap = argparse.ArgumentParser(description='display dict object as tree diagram')
+    ap.add_argument('-d', '--demo', action="store_true", help='show demo')
+    ap.add_argument('-j', '--json', help='json file or json string')
+    return ap.parse_args()
 
 
 def json2dict(s):
@@ -19,26 +28,11 @@ def fmt_s(k, l, indent=4):
     s = ''
     for i in range(1, k):
         if i in l:
-            if indent == 2:
-                s += '| '
-            elif indent == 3:
-                s += '|  '
-            else:
-                s += '|   '
+            s += '|' + (indent - 1) * ' '
         else:
-            if indent == 2:
-                s += 2 * ' '
-            elif indent == 3:
-                s += 3 * ' '
-            else:
-                s += 4 * ' '
-    if indent == 2:
-        s += '\ %s'
-    elif indent == 3:
-        s += '\_ %s'
-    else:
-        s += '\__ %s'
+            s += indent * ' '
 
+    s += '\\' + (indent - 2) * '_' + ' %s'
     return s
 
 
@@ -75,7 +69,15 @@ def dict2tree(obj, root='root', indent=4):
             dict2tree(i, indent=indent)
 
 
-if __name__ == '__main__':
-    j = '{"a": {"b": {"c": "d"}}}'
+def main(root='root', indent=4):
+    args = get_args()
+    if args.demo:
+        j = '{"a": {"b": {"c": "d", "e": "f"}}, "g": "h"}'
+    if args.json is not None:
+        j = args.json
     d = json2dict(j)
-    dict2tree(d, root='root', indent=3)
+    dict2tree(d, root, indent)
+
+
+if __name__ == '__main__':
+    main()
