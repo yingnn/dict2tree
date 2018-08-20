@@ -42,7 +42,7 @@ def fmt_s(k, l, indent=4):
     return s
 
 
-def dict2tree(obj, root='.', indent=4):
+def dict2tree(obj, root='root', indent=4):
     global k
     if k == 0:
         print(root)
@@ -78,4 +78,4 @@ def dict2tree(obj, root='.', indent=4):
 if __name__ == '__main__':
     j = '{"a": {"b": {"c": "d"}}}'
     d = json2dict(j)
-    dict2tree(d, 'root', 3)
+    dict2tree(d, root='root', indent=3)
