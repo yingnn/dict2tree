@@ -50,7 +50,7 @@ def dict2tree(obj, root='root', indent=4):
         k += 1
         if len(obj) > 1:
             l.add(k)
-            ks = obj.keys()
+            ks = list(obj.keys())
             for i in ks[:-1]:
                 print(fmt_s(k, l, indent) % i)
                 dict2tree(obj[i], indent=indent)
