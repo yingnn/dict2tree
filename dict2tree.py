@@ -1,6 +1,5 @@
 from __future__ import print_function
 import json
-import sys
 import os
 
 
@@ -77,11 +76,6 @@ def dict2tree(obj, root='.', indent=4):
 
 
 if __name__ == '__main__':
-    temp = {'outlook': {'sunny': {'humidity': {'high': ['no', {'tes': 'a'}], 'normal': 'yes'}}, 'rainy': {'wind': {'strong': 'no', 'weak': 'yes'}}, 'overcast': ['yes', 'no']}, 'd': ['a', 'b']}
-    tree = {'wesley': {'1': {'romulan': {'1': '0', '0': '1'}}, '0': {'romulan': {'1': '0', '0': {'poetry': {'1': {'honor': {'1': '0', '0': '1'}}, '0': {'honor': {'1': '1', '0': '0'}}}}}}}}
-    temp = json.dumps(tree)
-    temp = json2dict(temp)
-    temp = {'A': temp, 'a': 'aa', 'b': {'b': 'c'}}
-    # print(sys.argv[1])
-    # d = get_json(sys.argv[1])
-    dict2tree(temp, 'temp', 3)
+    j = '{"a": {"b": {"c": "d"}}}'
+    d = json2dict(j)
+    dict2tree(d, 'root', 3)
